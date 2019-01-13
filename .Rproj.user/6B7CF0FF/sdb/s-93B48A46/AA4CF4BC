@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "mult <- 5.5\n\nd <- 8\nh <- 4\n\nvol <- pi * (d/2)^2 * h\nsurf_area <- (2 * pi * (d/2) * h) + (2 * pi * (d/2)^2)\n\neightfourbc <- cake_filling_round(8,4,'buttercream')\neightfourgan <- cake_filling_round(8,4,'ganache')\n\nsurf_area = 175.9292\n\nbc <- eightfourbc[1,2]\n\nmult * surf_area\n\nprice_list <- tibble(ingredient = c('icing_sugar','butter','double_cream','chocolate','rum'),\n                     units = c(250,250,200,2500,700),\n                     price = c(.49,1.75,.65,21.9,13.49),\n                     price_per_unit = price / units )\n\nfilling <- str_to_lower(gsub(' ','_',filling))\n\npossibles <- c('ganache','buttercream','chocolate_buttercream','coconut_rum_buttercream','vanilla_buttercream')\n\nfilling <- str_to_lower(ifelse(filling %in% c('chocolate ganache','chocolate'),'ganache',filling))\n\nmult <- 5.5\n\nvol <- pi * (d/2)^2 * h\nsurf_area <- (2 * pi * (d/2) * h) + (2 * pi * (d/2)^2)\n\nbuttercream <- round(mult*surf_area,-1)\nicing_sugar <- round(buttercream * (2/3),-1)\nbutter <- icing_sugar/2\n\nbutter_calcs <- tibble(ingredient = c('buttercream','icing_sugar','butter'),\n                       amount = c(buttercream,icing_sugar,butter))\n\nbutter_prices <- butter_calcs %>%\n  inner_join(price_list,by='ingredient') %>%\n  mutate(price = round(price_per_unit * amount,digits=2)) %>%\n  select(ingredient,price,units)\n\nbutter_sum <- sum(butter_prices$price)\n\nbutter_prices <- butter_prices %>%\n  add_row(ingredient = 'buttercream',price=butter_sum)\n\nbutter_calcs <- butter_calcs %>%\n  inner_join(butter_prices,by='ingredient') %>%\n  mutate(unit = 'g') %>%\n  select(ingredient,amount,unit,price)",
+    "created" : 1534878106940.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2453881399",
+    "id" : "AA4CF4BC",
+    "lastKnownWriteTime" : 3419473789575321445,
+    "last_content_update" : 1539547985277,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

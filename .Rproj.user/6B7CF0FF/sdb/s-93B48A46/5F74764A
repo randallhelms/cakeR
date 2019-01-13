@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "cake_round <- function(d,h,filling,fondant,type) {\n\n\trequire(dplyr)\n\trequire(googlesheets)\n\trequire(tidyr)\n\trequire(stringr)\n\trequire(tibble)\n\t\n\tingredients <- cake_ingredients_round(d,h,type)\n\t\n\tfilling <- cake_filling_round(d,h,filling) \n\t\n\tfondant <- cake_fondant_round(d,h,fondant)\n\t\n\tdimensions <- tibble(d = d, h = h)\n\t\n\tcake_list <- list(ingredients,filling,fondant, dimensions)\n\t\n\treturn(cake_list)\n\t\n\n}",
+    "created" : 1534877079507.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "364225216",
+    "id" : "5F74764A",
+    "lastKnownWriteTime" : 1539498685,
+    "last_content_update" : 1539498685,
+    "path" : "C:/Users/Randall Helms/Google Drive/data/rhelms_data/r/cakeR/R/cake_round.R",
+    "project_path" : "R/cake_round.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

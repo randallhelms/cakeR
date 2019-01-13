@@ -1,0 +1,94 @@
+---
+title: "Sweet Time Berlin - Cake Quote"
+author: "Iwona Helms"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+library(dplyr)
+library(cakeR)
+library(tidyr)
+library(stringr)
+library(knitr)
+library(tibble)
+library(kableExtra)
+
+d <- 10 #input your height
+h <- 4 #input your diameter
+filling <- 'buttercream' #input the type of filling
+fondant <- 'white' #input which type of fondant
+type <- 'vanilla' #input the type of cake
+
+vol <- pi * (d/2)^2 * h
+surf_area <- (2 * pi * (d/2) * h) + (2 * pi * (d/2)^2)
+
+cake <- cake_round(d,h,filling,fondant,type)
+i <- cake[[1]]
+fill <- cake[[2]]
+fon <- cake[[3]]
+
+```
+
+## Cake details: 
+
+* Cake dimensions: `r d` x `r h` inches
+
+* Cake type: `r str_to_title(type)`
+
+* Filling type: `r str_to_title(filling)`
+
+* Fondant type: `r str_to_title(fondant)`
+
+## Cake Price:
+
+```{r price,message=FALSE,echo=FALSE,warning=FALSE}
+
+iprice <- sum(i$price)
+fillprice <- sum(fill$price[-1])
+fonprice <- fon[1,]$price
+
+total <- iprice + fillprice + fonprice
+
+cake_name <- paste(str_to_title(gsub('_',' ',type)),' cake',sep='')
+fill_name <- paste(str_to_title(gsub('_',' ',filling)),' filling',sep='')
+fon_name <- paste(str_to_title(fondant),' fondant',sep='')
+
+prices <- tibble(Category = c(cake_name,fill_name,fon_name,'Total Price'),
+                 Price = c(iprice,fillprice,fonprice,total))
+
+kable(prices,'html') %>%
+  kable_styling(full_width=T) %>%
+  row_spec(4,bold=T,color='white',background='black')
+```
+
+## Cake Ingredients
+
+```{r ingredients,message=FALSE,echo=FALSE,warning=FALSE}
+
+kable(i)
+```
+
+## Filling Ingredients
+
+```{r filling,message=FALSE,echo=FALSE,warning=FALSE}
+
+fill <- fill %>%
+  arrange(price)
+
+kable(fill,'html') %>%
+  kable_styling(full_width=T) %>%
+  row_spec(3,bold=T,color='white',background='black')
+```
+
+## Fondant
+
+```{r fondant,message=FALSE,echo=FALSE,warning=FALSE}
+
+kable(fon)
+```

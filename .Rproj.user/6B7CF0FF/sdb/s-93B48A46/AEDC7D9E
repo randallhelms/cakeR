@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(readr)\ntest <- read_delim(\"C:/Users/Randall Helms/Desktop/test.txt\", \n                   \" \", escape_double = FALSE, trim_ws = TRUE) %>%\n  select(1:7)\n\ntest <- test %>%\nmutate(full_date = paste(V1,X2,V2))\n\ntest %>%\n  filter(full_date == 'Wed Sep 15')\n\ndate_filter <- function(x,date) {\n  \n  y <- x %>%\n    filter(full_date == date)\n  \n  return(y)\n}\n\ndate_filter(test,'Wed Sep 15')\n\ntest %>%\n  date_filter(date='Wed Sep 15')",
+    "created" : 1539501710344.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "3704195202",
+    "id" : "AEDC7D9E",
+    "lastKnownWriteTime" : 3419473789575321445,
+    "last_content_update" : 1539502128703,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled3"
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

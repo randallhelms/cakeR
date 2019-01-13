@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "cake_fondant_round <- function(d,h,fondant) {\n\n  require(stringr)\n  require(tidyr)\n  require(dplyr)\n  require(tibble)\n  \n  d_range <- 6:12\n  h_range <- seq(3,4,.25)\n  \n  price_list <- tibble(ingredient = c('fondant_white','fondant_color'),\n                       amount = c(5000,1000),\n                       price = c(33.9,10.9),\n                       price_per_unit = price / amount\n  )\n\tfondant <- str_to_lower(ifelse(fondant %in% c('colored','colour','coloured'),'color',fondant))\n  \n  if(d %in% d_range & h %in% h_range & fondant %in% c('white','color')) {\n  \n  vol <- pi * (d/2)^2 * h\n  surf_area <- (2 * pi * (d/2) * h) + (2 * pi * (d/2)^2)\n  \n  fond_mult <- 3.1\n  end_fondant <- round(fond_mult * surf_area,-1)\n  start_fondant <- end_fondant * 1.5\n  \n  fprice <- ifelse(fondant=='white',price_list$price_per_unit[[1]],\n                   price_list$price_per_unit[[2]])\n  \n  fondant_table <- tibble(ingredient=c('start_fondant','end_fondant'),\n                    amount=c(start_fondant,end_fondant),\n\t\t\t\t\tunit = 'g',\n                    price=round(fprice*amount,digits=2)\n  )\n  \n  return(fondant_table) }\n  else {\n  print('Error! Please check your inputs')\n  break\n  }\n\n}",
+    "created" : 1534877100263.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3177547520",
+    "id" : "93CADB0C",
+    "lastKnownWriteTime" : 1527448587,
+    "last_content_update" : 1527448587,
+    "path" : "C:/Users/Randall Helms/Google Drive/data/rhelms_data/r/cakeR/R/cake_fondant_round.R",
+    "project_path" : "R/cake_fondant_round.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "cake_type <- 'round'\ncolor <- 'white'\nhow_thick =3\n\nboards <- gs_quickread('Sweet Time Berlin Tracking','sundries stock') %>%\n  tidycols() %>%\n  filter(board_type == cake_type)\n\ncake_dims_cm <- cake_dims * 2.54\n\nboard_dims <- cake_dims + 3\n\nboards_dim <- boards %>%\n  filter(size_inches == board_dims & board_color == color & thickness == how_thick)\n\nif (boards_dim$stock == 0) {\n  \n  boards_dim <- boards %>%\n    filter(size_inches == board_dims & thickness == how_thick) %>%\n    filter(stock > 0)\n  \n  if (nrow(boards_dim) == 0) {\n    \n    boards_dim <- boards %>%\n      filter(size_inches == board_dims) %>%\n      filter(stock > 0)\n    \n    if (nrow(boards_dim) == 0) {\n      \n      new_size <- board_dims + 1\n      \n      boards_dim <- boards %>%\n        filter(size_inches == new_size & board_color == color & thickness == how_thick)\n      \n      if (boards_dim$stock == 0) {\n        \n        nboards_dim <- boards %>%\n          filter(size_inches == new_size & thickness == how_thick) %>%\n          filter(stock > 0)\n        \n      }\n    }\n    \n  } \n  \n}",
+    "created" : 1539499290635.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "1471753420",
+    "id" : "C725328",
+    "lastKnownWriteTime" : 13229757704831081,
+    "last_content_update" : 1539504824688,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

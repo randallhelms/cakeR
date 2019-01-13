@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "x<-data.frame(\"sub\" = rep(c(\"sub1\",\"sub2\",\"sub3\"),times=4),\n              \"cond1\" = rep(c(\"A\",\"B\"),times=c(6,6)),\n              \"cond2\" = rep(c(\"C\",\"C\",\"C\",\"D\",\"D\",\"D\"),times=2),\n              \"score\" = c(6,5,4, 5,4,3, 4,3,2, 3,2,1))\n\ndodge <- position_dodge(width=.5)\nggplot(x, aes(x=cond1, y=score, fill=cond2))+\n  geom_split_violin(trim = F)+\n  geom_point(shape=16,position=dodge)",
+    "created" : 1539633794447.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2265622375",
+    "id" : "64BC6418",
+    "lastKnownWriteTime" : 3419473789575321445,
+    "last_content_update" : 1539633841369,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled5"
+    },
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,20 @@
+Package: cakeR
+Type: Package
+Title: Calculate cake ingredients and prices
+Version: 0.1.0
+Author: Randall Helms
+Maintainer: Randall Helms <randall.helms@gmail.com>
+Description: Calculate ingredients and pricing for chocolate, vanilla, and red velvet cakes, with buttercream or chocolate ganache filling, with fondant over the top.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Imports:
+	tidyverse,
+	googlesheets,
+	stringr,
+	tidyr,
+	dplyr,
+	knitr,
+	tibble,
+	snakecase
+RoxygenNote: 6.1.0
