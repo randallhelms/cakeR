@@ -17,7 +17,7 @@ cake_fondant_square <- function(l,w,h,fondant) {
 	
   fondant <- str_to_lower(ifelse(fondant %in% c('colored','colour','coloured'),'color',fondant))
   
-  if (l %in% l_range & w %in% w_range & h %in% h_range & fondant %in% c('white','color')) {
+  if (fondant %in% c('white','color')) {
 
   surf_area <- 2 * ((l*w)+(w*h)+(l*h))
   
@@ -35,6 +35,6 @@ cake_fondant_square <- function(l,w,h,fondant) {
   
   return(fondant_table)
   } else {
-  print('Error! Please check your inputs')
-  break }
+  stop('Error! Please check your inputs')
+ }
 }

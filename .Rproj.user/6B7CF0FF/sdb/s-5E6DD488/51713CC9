@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "gs_quickread <- function(name) {\n  \n  require(googlesheets)\n  require(tidyverse)\n  \n  xlist <- gs_ls() %>%\n    filter(sheet_title == name)\n  \n  key <- xlist[['sheet_key']]\n  \n  gkey <- gs_key(key)\n  \n  x <- gs_read(gkey,ws=1,literal=TRUE)\n  \n  return(x)\n  \n}\n\ngetit5 <- gs_quickread('get_it_005')\n\ngetit5 <- getit5 %>%\n  tidycols() %>%\n  mutate(track_number = ifelse(track_number < 10,paste('0',track_number,sep=''),track_number),\n         track_id = paste(track_number,'. ',artist,' - ',track,' (',label,')',sep='')) %>%\n  filter(!is.na(track_number))\n\ntl <- getit5 %>% pull(track_id)\n\nsetwd('C:/Users/Randall Helms/Music/getit005')\n\nwrite.table(tl,'Pearsall-GetIt005-GetDark.txt',col.names = FALSE,row.names = FALSE,quote = FALSE)\n\nsr9 <- gs_quickread('havok_tribute') %>%\n  tidycols() %>%\n  mutate(track_number = ifelse(track_number < 10,paste('0',track_number,sep=''),track_number),\n         track_id = paste(track_number,'. ',artist,' - ',track,' (',release,')',sep='')) %>%\n  filter(!is.na(track_number))\n\ntl2 <- sr9 %>% pull(track_id)\n\nsetwd('C:/Users/Randall Helms/Music/sr9')\n\nwrite.table(tl2,'Pearsall-SquatRocking9-TalesOfHavok.txt',col.names = FALSE,row.names = FALSE,quote = FALSE)\n",
+    "created" : 1551477343614.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "4141080925",
+    "id" : "51713CC9",
+    "lastKnownWriteTime" : 1547372866,
+    "last_content_update" : 1551562204946,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled7"
+    },
+    "relative_order" : 16,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

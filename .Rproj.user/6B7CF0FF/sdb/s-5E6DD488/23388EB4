@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(cakeR)\n\nd <- 8 #input your diameter\nh <- 3 #input your height\nfilling <- 'ganache' #input the type of filling\nfondant <- 'color' #input which type of fondant\ntype <- 'chocolate' #input the type of cake\nboard_color <- 'white'\ndeco_minutes <- 120 #time to decorate the cake\n\nvol <- pi * (d/2)^2 * h\nsurf_area <- (2 * pi * (d/2) * h) + (2 * pi * (d/2)^2)\n\ncake <- cake_round(d,h,filling,fondant,type)\ni <- cake[[1]]\nfill <- cake[[2]]\nfon <- cake[[3]]\nboard <- cake_boards(cake,'round',board_color)\nbox <- cake_boxes(board)\nwork <- labor_cost(deco_minutes)",
+    "created" : 1540319802675.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "1110183635",
+    "id" : "23388EB4",
+    "lastKnownWriteTime" : 3419473789575321445,
+    "last_content_update" : 1540320478940,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled6"
+    },
+    "relative_order" : 14,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

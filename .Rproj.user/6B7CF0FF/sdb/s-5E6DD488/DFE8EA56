@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"Sweet Time Berlin - Round Cake Quote\"\nauthor: \"Iwona Helms\"\ndate: \"`r format(Sys.time(), '%d %B, %Y')`\"\noutput:\n  html_document: default\n  pdf_document: default\n---\n\n```{r setup, include=FALSE}\n\nknitr::opts_chunk$set(echo = TRUE)\n\nlibrary(dplyr)\nlibrary(cakeR)\nlibrary(tidyr)\nlibrary(stringr)\nlibrary(knitr)\nlibrary(tibble)\nlibrary(kableExtra)\n\nd <- 7 #input your diameter\nh <- 4.25 #input your height\nfilling <- 'ganache' #input the type of filling\nfondant <- 'color' #input which type of fondant\ntype <- 'chocolate' #input the type of cake\nboard_color <- 'white'\ndeco_minutes <- 120 #time to decorate the cake\n\nvol <- pi * (d/2)^2 * h\nsurf_area <- (2 * pi * (d/2) * h) + (2 * pi * (d/2)^2)\n\ncake <- cake_round(d,h,filling,fondant,type)\ni <- cake[[1]]\nfill <- cake[[2]]\nfon <- cake[[3]]\nboard <- cake_boards(cake,'round',board_color)\nbox <- cake_boxes(board)\nwork <- labor_cost(deco_minutes)\n\n```\n\n## Cake details: \n\n* Cake dimensions: `r d` x `r h` inches\n\n* Cake type: `r str_to_title(type)`\n\n* Filling type: `r str_to_title(filling)`\n\n* Fondant type: `r str_to_title(fondant)`\n\n* Board: `r paste(str_to_title(board$board_color),', ',board$board_type,', ',board$size_inches,' inches',sep='')`\n\n* Box: `r box$size`\n\n* Labor: `r paste(deco_minutes,'minutes')`\n\n## Cake Price:\n\n```{r price,message=FALSE,echo=FALSE,warning=FALSE}\n\niprice <- sum(i$price)\nfillprice <- sum(fill$price[-1])\nfonprice <- fon[1,]$price\nboardprice <- round(board$price_per_unit,digits=2)\nboxprice <- round(box$unit_price,digits=2)\nlb <- round(work,digits=2)\n\nsub_total <- iprice + fillprice + fonprice + boardprice + boxprice + lb\n\nprofit <- round(sub_total * .2,digits=2)\n\ntotal <- sub_total + profit\n\ncake_name <- paste(str_to_title(gsub('_',' ',type)),' cake',sep='')\nfill_name <- paste(str_to_title(gsub('_',' ',filling)),' filling',sep='')\nfon_name <- paste(str_to_title(fondant),' fondant',sep='')\n\nprices <- tibble(Category = c(cake_name,fill_name,fon_name,'Board','Box','Labor', 'Sub-Total','Margin','Total Price'),\n                 Price = c(iprice,fillprice,fonprice,boardprice,boxprice,lb,sub_total,profit,total))\n\nkable(prices,'html') %>%\n  kable_styling(full_width=T) %>%\n  row_spec(7,bold=T,color='white',background='grey') %>%\n  row_spec(9,bold=T,color='white',background='black')\n```\n\n## Cake Ingredients\n\n```{r ingredients,message=FALSE,echo=FALSE,warning=FALSE}\n\nkable(i) %>%\n  kable_styling(full_width=T)\n```\n\n## Filling Ingredients\n\n```{r filling,message=FALSE,echo=FALSE,warning=FALSE}\n\nfill <- fill %>%\n  arrange(price)\n\nkable(fill,'html') %>%\n  kable_styling(full_width=T) %>%\n  row_spec(3,bold=T,color='white',background='black')\n```\n\n## Fondant\n\n```{r fondant,message=FALSE,echo=FALSE,warning=FALSE}\n\nkable(fon)\n```\n",
+    "created" : 1541102099275.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3049098721",
+    "id" : "DFE8EA56",
+    "lastKnownWriteTime" : 1552850411,
+    "last_content_update" : 1552850411,
+    "path" : "~/R/cakeR/cake_quote2.Rmd",
+    "project_path" : "cake_quote2.Rmd",
+    "properties" : {
+    },
+    "relative_order" : 15,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

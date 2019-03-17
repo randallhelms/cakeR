@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "cake_ingredients_round <- function(d,h,type) {\n\n  require(stringr)\n  require(tidyr)\n  require(dplyr)\n  require(tibble)\n\n  type <- str_to_lower(gsub(' ','_',type))\n\n  if (type %in% c('red_velvet','chocolate','vanilla')) {\n\n  round_ingredients <- gs_quickread('cake_recipes_round') %>%\n\tfilter(cake_name == type)\n\n  c <- round_ingredients %>%\n    distinct(volume)\n\n  core_volume <- c[['volume']]\n\n  new_volume <- pi * (d/2)^2 * h\n\n  mult <- new_volume / core_volume\n\n  new_recipe <- round_ingredients %>%\n    mutate(diameter = d,\n           height = h,\n           volume = new_volume,\n           amount = round(amount * mult,digits=0),\n\t\t   price = round(amount * price_per_unit,digits=2)) %>%\n\tselect(cake_name,ingredient,amount,unit,price)\n\n  return(new_recipe) } else {\n\tstop('Bad input! Please check your input values')\n\n  }\n\n}\n",
+    "created" : 1534877084849.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4073958581",
+    "id" : "F7CC7E7E",
+    "lastKnownWriteTime" : 1552850297,
+    "last_content_update" : 1552850297,
+    "path" : "~/R/cakeR/R/cake_ingredients_round.R",
+    "project_path" : "R/cake_ingredients_round.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

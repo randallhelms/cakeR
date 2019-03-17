@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "cake_filling_round <- function(d,h,filling) {\n\n  require(stringr)\n  require(tidyr)\n  require(dplyr)\n  require(tibble)\n\n  d_range <- 6:12\n  h_range <- seq(3,4,.25)\n\n  price_list <- tibble(ingredient = c('icing_sugar','butter','double_cream','chocolate','rum'),\n                       units = c(250,250,200,2500,700),\n                       price = c(.49,1.75,.65,21.9,13.49),\n                       price_per_unit = price / units\n  )\n  \n  filling <- str_to_lower(gsub(' ','_',filling))\n  \n  possibles <- c('ganache','buttercream','chocolate_buttercream','coconut_rum_buttercream','vanilla_buttercream')\n\n  filling <- str_to_lower(ifelse(filling %in% c('chocolate ganache','chocolate'),'ganache',filling))\n\n  mult <- 5.5\n\n  vol <- pi * (d/2)^2 * h\n  surf_area <- (2 * pi * (d/2) * h) + (2 * pi * (d/2)^2)\n  \n  if(filling %in% possibles) {\n\n    if (filling=='buttercream') {\n\n      buttercream <- round(mult*surf_area,-1)\n      icing_sugar <- round(buttercream * (2/3),-1)\n      butter <- icing_sugar/2\n\n      butter_calcs <- tibble(ingredient = c('buttercream','icing_sugar','butter'),\n                             amount = c(buttercream,icing_sugar,butter))\n\n      butter_prices <- butter_calcs %>%\n        inner_join(price_list,by='ingredient') %>%\n        mutate(price = round(price_per_unit * amount,digits=2)) %>%\n        select(ingredient,price)\n\n      butter_sum <- sum(butter_prices$price)\n\n      butter_prices <- butter_prices %>%\n        add_row(ingredient = 'buttercream',price=butter_sum)\n\n      butter_calcs <- butter_calcs %>%\n        inner_join(butter_prices,by='ingredient') %>%\n\t\t    mutate(unit = 'g') %>%\n\t\t    select(ingredient,amount,unit,price)\n\n      return(butter_calcs) } else {\n\n        ganache <- round(mult * surf_area,-1)\n        chocolate <- round((ganache / 2) * 1.1,-.5)\n        double_cream <- chocolate\n\n        ganache_calcs <- tibble(ingredient = c('ganache','chocolate','double_cream'),\n                                amount = c(ganache,chocolate,double_cream),\n\t\t\t\t\t\t\t\tunit = c('g','g','ml')\n\t\t\t\t\t\t\t\t)\n\n        ganache_prices <- ganache_calcs %>%\n          inner_join(price_list,by='ingredient') %>%\n          mutate(price = round(price_per_unit * amount,digits=2)) %>%\n          select(ingredient,price,unit)\n\n        ganache_sum <- sum(ganache_prices$price)\n\n        ganache_prices <- ganache_prices %>%\n          add_row(ingredient = 'ganache',price=ganache_sum) %>%\n\t\t  select(ingredient,price)\n\n        ganache_calcs <- ganache_calcs %>%\n          inner_join(ganache_prices,by='ingredient')\n\n        return(ganache_calcs)\n\n      }\n  } else {\n    stop('Error: Bad input! Please try again')\n\n  }\n}\n",
+    "created" : 1534877091706.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2307491869",
+    "id" : "D5FEB00A",
+    "lastKnownWriteTime" : 1552850055,
+    "last_content_update" : 1552850055,
+    "path" : "~/R/cakeR/R/cake_filling_round.R",
+    "project_path" : "R/cake_filling_round.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

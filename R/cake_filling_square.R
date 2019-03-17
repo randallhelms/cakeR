@@ -23,7 +23,7 @@ cake_filling_square <- function(l,w,h,filling) {
   
   surf_area <- 2 * ((l*w)+(w*h)+(l*h))
   
-  if(l %in% l_range & w %in% w_range & h %in% h_range & filling %in% c('buttercream','ganache')) {
+  if(filling %in% c('buttercream','ganache')) {
     
     if (filling=='buttercream') {
       
@@ -78,7 +78,6 @@ cake_filling_square <- function(l,w,h,filling) {
         
       }
   } else {
-    print('error: bad input! please try again')
-    break
+    stop('error: bad input! please try again')
   }
 }

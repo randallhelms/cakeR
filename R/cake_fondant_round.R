@@ -15,7 +15,7 @@ cake_fondant_round <- function(d,h,fondant) {
   )
 	fondant <- str_to_lower(ifelse(fondant %in% c('colored','colour','coloured'),'color',fondant))
   
-  if (d %in% d_range & h %in% h_range & fondant %in% c('white','color')) {
+  if (fondant %in% c('white','color')) {
   
   vol <- pi * (d/2)^2 * h
   surf_area <- (2 * pi * (d/2) * h) + (2 * pi * (d/2)^2)
@@ -35,8 +35,8 @@ cake_fondant_round <- function(d,h,fondant) {
   
   return(fondant_table) }
   else {
-  print('Error! Please check your inputs')
-  break
+  stop('Error! Please check your inputs')
+
   }
 
 }

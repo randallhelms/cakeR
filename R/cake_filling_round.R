@@ -25,7 +25,7 @@ cake_filling_round <- function(d,h,filling) {
   vol <- pi * (d/2)^2 * h
   surf_area <- (2 * pi * (d/2) * h) + (2 * pi * (d/2)^2)
   
-  if(d %in% d_range & h %in% h_range & filling %in% possibles) {
+  if(filling %in% possibles) {
 
     if (filling=='buttercream') {
 
@@ -80,7 +80,7 @@ cake_filling_round <- function(d,h,filling) {
 
       }
   } else {
-    print('Error: Bad input! Please try again')
-    break
+    stop('Error: Bad input! Please try again')
+
   }
 }

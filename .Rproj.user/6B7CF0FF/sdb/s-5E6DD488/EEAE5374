@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"Sweet Time Berlin - Round Cake Quote\"\nauthor: \"Iwona Helms\"\ndate: \"`r format(Sys.time(), '%d %B, %Y')`\"\noutput:\n  html_document: default\n  pdf_document: default\n---\n\n```{r setup, include=FALSE}\n\nknitr::opts_chunk$set(echo = TRUE)\n\nlibrary(dplyr)\nlibrary(cakeR)\nlibrary(tidyr)\nlibrary(stringr)\nlibrary(knitr)\nlibrary(tibble)\nlibrary(kableExtra)\n\nd <- 8 #input your diameter\nh <- 3 #input your height\nfilling <- 'ganache' #input the type of filling\nfondant <- 'color' #input which type of fondant\ntype <- 'chocolate' #input the type of cake\n\nvol <- pi * (d/2)^2 * h\nsurf_area <- (2 * pi * (d/2) * h) + (2 * pi * (d/2)^2)\n\ncake <- cake_round(d,h,filling,fondant,type)\ni <- cake[[1]]\nfill <- cake[[2]]\nfon <- cake[[3]]\n\n```\n\n## Cake details: \n\n* Cake dimensions: `r d` x `r h` inches\n\n* Cake type: `r str_to_title(type)`\n\n* Filling type: `r str_to_title(filling)`\n\n* Fondant type: `r str_to_title(fondant)`\n\n## Cake Price:\n\n```{r price,message=FALSE,echo=FALSE,warning=FALSE}\n\niprice <- sum(i$price)\nfillprice <- sum(fill$price[-1])\nfonprice <- fon[1,]$price\n\nsub_total <- iprice + fillprice + fonprice\n\nprofit <- round(sub_total * .2,digits=2)\n\ntotal <- sub_total + profit\n\ncake_name <- paste(str_to_title(gsub('_',' ',type)),' cake',sep='')\nfill_name <- paste(str_to_title(gsub('_',' ',filling)),' filling',sep='')\nfon_name <- paste(str_to_title(fondant),' fondant',sep='')\n\nprices <- tibble(Category = c(cake_name,fill_name,fon_name,'Sub-Total','Margin','Total Price'),\n                 Price = c(iprice,fillprice,fonprice,sub_total,profit,total))\n\nkable(prices,'html') %>%\n  kable_styling(full_width=T) \n```\n\n## Cake Ingredients\n\n```{r ingredients,message=FALSE,echo=FALSE,warning=FALSE}\n\nkable(i)\n```\n\n## Filling Ingredients\n\n```{r filling,message=FALSE,echo=FALSE,warning=FALSE}\n\nfill <- fill %>%\n  arrange(price)\n\nkable(fill,'html') %>%\n  kable_styling(full_width=T) %>%\n  row_spec(3,bold=T,color='white',background='black')\n```\n\n## Fondant\n\n```{r fondant,message=FALSE,echo=FALSE,warning=FALSE}\n\nkable(fon)\n```\n",
+    "created" : 1540059328664.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2919312381",
+    "id" : "EEAE5374",
+    "lastKnownWriteTime" : 1540319664,
+    "last_content_update" : 1540319664039,
+    "path" : "~/R/cakeR/cake_quote_onlycake.Rmd",
+    "project_path" : "cake_quote_onlycake.Rmd",
+    "properties" : {
+        "tempName" : "Untitled6"
+    },
+    "relative_order" : 13,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

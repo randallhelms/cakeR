@@ -9,7 +9,7 @@ cake_ingredients_square <- function(l,w,h,type) {
   w_range <- 6:12
   h_range <- seq(3,4,.25)
   
-  if (l %in% l_range & w %in% w_range & h %in% h_range & type %in% c('red_velvet','chocolate','vanilla')) {
+  if (type %in% c('red_velvet','chocolate','vanilla')) {
       
   square_ingredients <- gs_quickread('cake_recipes_square') %>%
 	filter(cake_name == type)
@@ -33,8 +33,8 @@ cake_ingredients_square <- function(l,w,h,type) {
 	select(cake_name,ingredient,amount,unit,price)
   
   return(new_recipe) } else {
-	print('Bad input! Please check your input values')
-    break
+	stop('Bad input! Please check your input values')
+
   }
   
 }

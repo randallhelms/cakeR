@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "growth <- tibble(week = 1:5,\n                 animal = 1,\n                 weight = c(50,52,55,54,57))\n\neq <- function(d,t,i){\n\n  z <- (d[i+1]-d[i])/(t[i+1]-t[i])*(t-t[i])+d[i]\n  return(z)\n}\n\ntest_result <- eq(growth$weight,growth$week,3)",
+    "created" : 1539573403183.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "3552398180",
+    "id" : "D146C879",
+    "lastKnownWriteTime" : 3419473789575321445,
+    "last_content_update" : 1539574969793,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled4"
+    },
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
