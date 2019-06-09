@@ -1,7 +1,7 @@
 ---
 title: "Sweet Time Berlin - Round Cake Quote"
 author: "Iwona Helms"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+
 output:
   html_document: default
   pdf_document: default
@@ -20,8 +20,8 @@ library(tibble)
 library(kableExtra)
 
 d <- 7 #input your diameter
-h <- 4.25 #input your height
-filling <- 'ganache' #input the type of filling
+h <- 4 #input your height
+filling <- 'buttercream' #input the type of filling
 fondant <- 'color' #input which type of fondant
 type <- 'chocolate' #input the type of cake
 board_color <- 'white'
